@@ -1,0 +1,52 @@
+# Environment files and secrets
+.env
+.env.*
+!.env.example
+*.env
+
+# Credentials and private keys
+*api_key*
+*api-key*
+*apikey*
+*secret*
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+credentials.json
+
+# Python virtual environments and generated files
+.venv/
+venv/
+env/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Local data and databases
+data/
+*.sqlite
+*.sqlite3
+*.db
+
+# IDE and editor settings
+.idea/
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+*.bak

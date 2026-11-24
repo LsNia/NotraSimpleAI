@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#18191b">
+  <title>NOTRA — музыкальный чат</title>
+  <link rel="icon" href="/static/record.png" type="image/png">
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="wordmark"><span class="record" aria-hidden="true"></span>NOTRA</div>
+    <button id="logout" class="text-button" type="button" hidden>Выйти</button>
+  </header>
+
+  <main class="layout">
+    <section id="login" class="intro" aria-labelledby="login-title">
+      <h1 id="login-title">Что послушать?</h1>
+      <p class="intro-text">Подборки треков и альбомов по настроению, жанру или любимому исполнителю.</p>
+      <form id="login-form" action="/api/session" method="post" novalidate>
+        <label for="access-key">Ключ доступа</label>
+        <div class="key-box">
+          <input id="access-key" name="key" type="password" autocomplete="current-password"
+                 autocapitalize="none" spellcheck="false" minlength="8" pattern="[A-Za-z0-9_\-]{8,255}"
+                 aria-describedby="key-hint" aria-invalid="false" required>
+          <button id="toggle-key" class="eye-button" type="button" aria-label="Показать ключ">
+            <span class="eye" aria-hidden="true"></span>
+          </button>
+        </div>
+        <p id="key-hint" class="hint">От 8 до 255 символов. Латинские буквы, цифры, дефис и подчёркивание.</p>
+        <p id="login-error" class="error" role="status"></p>
+        <button id="login-submit" class="primary login-submit" type="submit" disabled>Войти в чат</button>
+      </form>
+    </section>
+
+    <section id="chat" class="chat" aria-labelledby="chat-title" hidden>
+      <h1 id="chat-title" tabindex="-1">Переписка</h1>
+      <div class="feed" id="feed" role="region" aria-label="История переписки" tabindex="0">
+        <div id="empty" class="empty" hidden>
+          <h2>Примеры запросов</h2>
+          <ul id="suggestions" class="suggestions" role="list">
+            <li><button type="button">Что послушать, если нравится Radiohead?</button></li>
+            <li><button type="button">С чего начать знакомство с джазом?</button></li>
+            <li><button type="button">Подбери музыку для ночной поездки</button></li>
+          </ul>
+        </div>
+        <div id="messages" class="messages" role="log" aria-label="Сообщения"></div>
+        <p id="chat-status" class="chat-status" role="status"></p>
+      </div>
+      <div class="feedback">
+        <p id="chat-error" class="error" role="alert"></p>
+        <button id="retry-history" class="text-button" type="button" hidden>Загрузить переписку снова</button>
+      </div>
+      <form id="message-form" class="composer" action="/api/chat" method="post" novalidate>
+        <label class="sr-only" for="message">Сообщение о музыке</label>
+        <textarea id="message" name="text" rows="2" enterkeyhint="send" placeholder="Спросите о музыке…" aria-describedby="count" required></textarea>
+        <div class="composer-actions">
+          <span id="count" class="count">0 / 500</span>
+          <button id="send" class="primary send" type="submit" disabled>Отправить</button>
+        </div>
+      </form>
+    </section>
+
+    <img class="cover" src="/static/turntable.webp" width="1100" height="734" fetchpriority="high" alt="Виниловая пластинка крупным планом на фоне проигрывателя">
+  </main>
+  <noscript>Для входа в чат включите JavaScript в браузере.</noscript>
+</body>
+</html>
